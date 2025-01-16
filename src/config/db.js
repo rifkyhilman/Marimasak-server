@@ -7,10 +7,11 @@ const connectDB = async () => {
   pool.getConnection((err, connection) => {
     if (err) {
       console.log({ error: err.message });
-    }
-
-    console.log("Connected to MySQL database");
-    connection.release();
+      console.log("Failed Connected to MySQL database !!!");
+    }else {
+      console.log("Connected to MySQL database");
+      connection.release();
+    }    
   });
 };
 
