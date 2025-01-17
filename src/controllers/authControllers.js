@@ -23,6 +23,7 @@ const register = async (req, res) => {
     nama,
     email,
     password: hashedPassword,
+    role: "user"
   };
   try {
     await createTable(userModel);
@@ -56,23 +57,15 @@ const login = async (req, res) => {
         return;
       }
 
-    console.log(password);
-    console.log(existingUser.password);
-
-
       const passwordMatch = await bcrypt.compare(
         password,
         existingUser.password
       );
 
-    console.log(passwordMatch);
-
-
       if (passwordMatch) {
         res.status(200).json({
           alert: true,
           userId: existingUser.userId,
-          email: existingUser.email,
           access_token: generateAccessToken(existingUser.userId),
           message: "Berhasil Login !"
         });

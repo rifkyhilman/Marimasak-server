@@ -3,9 +3,9 @@ const mysql = require("mysql");
 const config = require("../config/config");
 const pool = mysql.createPool(config);
 
-const createTable = (schema) => {
+const createTable = (model) => {
   return new Promise((resolve, reject) => {
-    pool.query(schema, (err, results) => {
+    pool.query(model, (err, results) => {
       if (err) {
         reject(err);
       } else {
