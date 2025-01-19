@@ -1,12 +1,11 @@
 const router = require("express").Router();
 const { register, login } = require("./controllers/authControllers");
 
-
-router.get("/", (req, res) => {
-    res.send("Hello World !!");
-});
-
+// Authuser Route
 router.post("/api/auth/register", register);
 router.post("/api/auth/login", login);
+
+//Resep Makanan Route
+
 
 module.exports = router;

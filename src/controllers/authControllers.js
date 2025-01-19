@@ -17,7 +17,7 @@ const register = async (req, res) => {
     return;
   }
   const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+  const hashedPassword = await bcrypt.hash(password, salt); 
   const user = {
     userId: uuidv4(),
     nama,
@@ -65,9 +65,9 @@ const login = async (req, res) => {
       if (passwordMatch) {
         res.status(200).json({
           alert: true,
+          message: "Berhasil Login !",
           userId: existingUser.userId,
-          access_token: generateAccessToken(existingUser.userId),
-          message: "Berhasil Login !"
+          access_token: generateAccessToken(existingUser.userId)
         });
       } else {
         res.status(401).json({ error: "Invalid credentials", message: "Password salah" });
